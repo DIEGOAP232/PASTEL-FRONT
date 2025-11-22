@@ -1,0 +1,40 @@
+.categoria-form-container {
+  padding: 40px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.categoria-form {
+  background: #fff5e6;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.categoria-form label {
+  font-weight: bold;
+}
+
+.categoria-form input,
+.categoria-form textarea {
+  padding: 10px;
+  border: 1px solid #c9ab8f;
+  border-radius: 8px;
+}
+
+.btn-guardar {
+  padding: 12px;
+  background: #7a3b12;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-guardar:hover {
+  background: #a35715;
+}

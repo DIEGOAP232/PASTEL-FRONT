@@ -1,0 +1,63 @@
+.admin-productos-container {
+  padding: 40px;
+}
+
+.admin-productos-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.btn-crear {
+  background: #7a3b12;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff5e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 12px;
+  border-bottom: 1px solid #e0c7a3;
+  text-align: left;
+}
+
+.tabla-productos th {
+  background: #f7d9b7;
+}
+
+.btn-editar {
+  background: #0099cc;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-right: 8px;
+  text-decoration: none;
+}
+
+.btn-eliminar {
+  background: #cc0000;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.miniatura {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
