@@ -1,3 +1,6 @@
+console.log("isAuthenticated:", isAuthenticated);
+console.log("usuario:", usuario);
+
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -22,9 +25,21 @@ function Navbar() {
             <li><Link to="/productos">Productos</Link></li>
 
             {/* Ruta de Administrador SOLO si es ADMIN */}
-            {usuario.rolNombre === "ADMIN" && (
-              <li><Link to="/admin">Administrador</Link></li>
-            )}
+          <li>
+  <Link 
+    to={
+      !isAuthenticated
+        ? "/login"          // no logueado
+        : usuario.rolNombre !== "ADMIN"
+        ? "/"               // logueado pero NO admin
+        : "/admin"          // logueado y admin
+    }
+  >
+    Administrador
+  </Link>
+</li>
+
+
 
             {/* Nombre del usuario */}
             <li className="navbar-user">

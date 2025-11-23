@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Páginas públicas
 import Home from "../pages/Home";
@@ -16,111 +16,93 @@ import ProductoForm from "../pages/ProductoForm";
 import AdminCategorias from "../pages/AdminCategorias";
 import CategoriaForm from "../pages/CategoriaForm";
 
-// Componentes
-import Navbar from "../components/layout/Navbar";
-
 // Rutas protegidas
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
 
 function AppRoutes() {
   return (
-    <Router>
-      <Navbar />
+    <Routes>
+      {/* RUTAS PÚBLICAS */}
+      <Route path="/" element={<Home />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
-      <Routes>
+      {/* LOGUEADOS */}
+      <Route
+        path="/productos"
+        element={
+          <ProtectedRoute>
+            <Productos />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* --------------------
-            RUTAS PÚBLICAS
-        -------------------- */}
-        <Route path="/" element={<Home />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      {/* ADMIN */}
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <Admin />
+          </AdminRoute>
+        }
+      />
 
-        {/* --------------------
-            RUTAS PARA USUARIOS LOGUEADOS
-        -------------------- */}
-        <Route
-          path="/productos"
-          element={
-            <ProtectedRoute>
-              <Productos />
-            </ProtectedRoute>
-          }
-        />
+      <Route
+        path="/admin/productos"
+        element={
+          <AdminRoute>
+            <AdminProductos />
+          </AdminRoute>
+        }
+      />
 
-        {/* --------------------
-            RUTAS SOLO PARA ADMIN
-        -------------------- */}
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <Admin />
-            </AdminRoute>
-          }
-        />
+      <Route
+        path="/admin/productos/crear"
+        element={
+          <AdminRoute>
+            <ProductoForm />
+          </AdminRoute>
+        }
+      />
 
-        {/* ---- Gestión de Productos ---- */}
-        <Route
-          path="/admin/productos"
-          element={
-            <AdminRoute>
-              <AdminProductos />
-            </AdminRoute>
-          }
-        />
+      <Route
+        path="/admin/productos/editar/:id"
+        element={
+          <AdminRoute>
+            <ProductoForm />
+          </AdminRoute>
+        }
+      />
 
-        <Route
-          path="/admin/productos/crear"
-          element={
-            <AdminRoute>
-              <ProductoForm />
-            </AdminRoute>
-          }
-        />
+      <Route
+        path="/admin/categorias"
+        element={
+          <AdminRoute>
+            <AdminCategorias />
+          </AdminRoute>
+        }
+      />
 
-        <Route
-          path="/admin/productos/editar/:id"
-          element={
-            <AdminRoute>
-              <ProductoForm />
-            </AdminRoute>
-          }
-        />
+      <Route
+        path="/admin/categorias/crear"
+        element={
+          <AdminRoute>
+            <CategoriaForm />
+          </AdminRoute>
+        }
+      />
 
-
-        {/* ---- Gestión de Categorías ---- */}
-        <Route
-          path="/admin/categorias"
-          element={
-            <AdminRoute>
-              <AdminCategorias />
-            </AdminRoute>
-          }
-        />
-
-        <Route
-          path="/admin/categorias/crear"
-          element={
-            <AdminRoute>
-              <CategoriaForm />
-            </AdminRoute>
-          }
-        />
-
-        <Route
-          path="/admin/categorias/editar/:id"
-          element={
-            <AdminRoute>
-              <CategoriaForm />
-            </AdminRoute>
-          }
-        />
-
-      </Routes>
-    </Router>
+      <Route
+        path="/admin/categorias/editar/:id"
+        element={
+          <AdminRoute>
+            <CategoriaForm />
+          </AdminRoute>
+        }
+      />
+    </Routes>
   );
 }
 
