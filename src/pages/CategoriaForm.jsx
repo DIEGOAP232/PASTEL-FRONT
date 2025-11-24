@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import { useNavigate, useParams } from "react-router-dom";
 import "./CategoriaForm.css";
 
 function CategoriaForm() {
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [categoria, setCategoria] = useState({
     nombre: "",
-    descripcion: ""
+    descripcion: "",
+    imagenUrl: ""
   });
+
+  const [nuevaImagen, setNuevaImagen] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   const cargarCategoria = async () => {
     const res = await api.get(`/api/categorias/${id}`);
-    setCategoria({
-      nombre: res.data.nombre,
-      descripcion: res.data.descripcion
-    });
+    setCategoria(res.data);
+    setPreview(`http://localhost:8080${res.data.imagenUrl}`);
   };
 
   useEffect(() => {
@@ -31,16 +33,46 @@ function CategoriaForm() {
     });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setNuevaImagen(file);
+    setPreview(URL.createObjectURL(file));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (id) {
-      await api.put(`/api/categorias/${id}`, categoria);
-    } else {
-      await api.post("/api/categorias", categoria);
-    }
+    try {
+      let saved;
 
-    navigate("/admin/categorias");
+      if (id) {
+        // >>> Actualizar texto
+        saved = await api.put(`/api/categorias/${id}`, categoria);
+      } else {
+        // >>> Crear categoría
+        saved = await api.post(`/api/categorias`, categoria);
+      }
+
+      const categoriaId = id || saved.data.idCategoria;
+
+      // >>> Subir imagen si el admin seleccionó una
+      if (nuevaImagen) {
+        const formData = new FormData();
+        formData.append("file", nuevaImagen);
+
+        await api.post(
+          `/api/categorias/${categoriaId}/imagen`,
+          formData,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+      }
+
+      navigate("/admin/categorias");
+
+    } catch (err) {
+      console.error(err);
+      alert("Error al guardar categoría");
+    }
   };
 
   return (
@@ -48,7 +80,7 @@ function CategoriaForm() {
       <h2>{id ? "Editar Categoría" : "Crear Categoría"}</h2>
 
       <form className="categoria-form" onSubmit={handleSubmit}>
-
+        
         <label>Nombre</label>
         <input
           type="text"
@@ -66,9 +98,15 @@ function CategoriaForm() {
           required
         />
 
+        <label>Imagen</label>
+        {preview && <img src={preview} className="categoria-preview" />}
+
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+
         <button type="submit" className="btn-guardar">
           {id ? "Actualizar" : "Crear"}
         </button>
+
       </form>
     </section>
   );

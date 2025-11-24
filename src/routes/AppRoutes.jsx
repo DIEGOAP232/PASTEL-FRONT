@@ -23,13 +23,14 @@ import AdminRoute from "./AdminRoute";
 function AppRoutes() {
   return (
     <Routes>
+
       {/* RUTAS PÚBLICAS */}
       <Route path="/" element={<Home />} />
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* LOGUEADOS */}
+      {/* RUTAS PARA USUARIOS LOGUEADOS */}
       <Route
         path="/productos"
         element={
@@ -39,7 +40,7 @@ function AppRoutes() {
         }
       />
 
-      {/* ADMIN */}
+      {/* RUTAS SOLO ADMIN */}
       <Route
         path="/admin"
         element={
@@ -102,6 +103,7 @@ function AppRoutes() {
           </AdminRoute>
         }
       />
+
     </Routes>
   );
 }

@@ -1,14 +1,13 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
-
-// Componentes del Home
 import CategoriesCarousel from "../components/home/CategoriesCarousel";
 import RecommendedSection from "../components/home/RecommendedSection";
+import BlogSection from "../components/home/BlogSection";
 
 function Home() {
   return (
     <>
-      {/* HERO PRINCIPAL */}
+      {/* HERO */}
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">
@@ -33,11 +32,14 @@ function Home() {
         </div>
       </section>
 
-      {/* CARRUSEL DE CATEGORÍAS */}
+      {/* CARRUSEL */}
       <CategoriesCarousel />
 
-      {/* SECCIÓN RECOMENDADOS */}
+      {/* RECOMENDADOS */}
       <RecommendedSection />
+
+      {/* BLOG */}
+      <BlogSection />
     </>
   );
 }

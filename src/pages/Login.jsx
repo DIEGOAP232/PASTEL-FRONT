@@ -2,11 +2,13 @@ import "./Login.css";
 import { useState, useContext } from "react";
 import { loginUsuario } from "../services/authService";
 import { AuthContext } from "../context/AuthContext";
+import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
   const { saveSession } = useContext(AuthContext);
+  const { mergeCartWithBackend } = useContext(CartContext);
 
   const [email, setEmail] = useState("");
   const [contrasena, setContrasena] = useState("");
@@ -17,9 +19,14 @@ function Login() {
     try {
       const data = await loginUsuario(email, contrasena);
 
+      // Guardamos sesión
       saveSession(data.token, data.usuario);
 
-      navigate("/"); 
+      // Fusionamos el carrito local con el del usuario
+      await mergeCartWithBackend();
+
+      // Redirigir al home
+      navigate("/");
     } catch (err) {
       alert("Credenciales incorrectas");
     }

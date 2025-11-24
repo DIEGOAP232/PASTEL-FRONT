@@ -11,13 +11,6 @@ function AdminCategorias() {
     setCategorias(res.data);
   };
 
-  const eliminarCategoria = async (id) => {
-    if (!confirm("¿Seguro que deseas eliminar esta categoría?")) return;
-
-    await api.delete(`/api/categorias/${id}`);
-    cargarCategorias();
-  };
-
   useEffect(() => {
     cargarCategorias();
   }, []);
@@ -26,7 +19,7 @@ function AdminCategorias() {
     <section className="admin-categorias-container">
       <h2>Gestión de Categorías</h2>
 
-      <div className="admin-categorias-header">
+      <div className="admin-header">
         <Link className="btn-crear" to="/admin/categorias/crear">
           + Crear Categoría
         </Link>
@@ -36,6 +29,7 @@ function AdminCategorias() {
         <thead>
           <tr>
             <th>ID</th>
+            <th>Imagen</th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Acciones</th>
@@ -46,25 +40,33 @@ function AdminCategorias() {
           {categorias.map((cat) => (
             <tr key={cat.idCategoria}>
               <td>{cat.idCategoria}</td>
+
+              <td>
+                {cat.imagenUrl ? (
+                  <img
+                    src={`http://localhost:8080${cat.imagenUrl}`}
+                    className="categoria-img-mini"
+                  />
+                ) : (
+                  "---"
+                )}
+              </td>
+
               <td>{cat.nombre}</td>
               <td>{cat.descripcion}</td>
 
               <td>
-                <Link className="btn-editar" to={`/admin/categorias/editar/${cat.idCategoria}`}>
+                <Link
+                  className="btn-editar"
+                  to={`/admin/categorias/editar/${cat.idCategoria}`}
+                >
                   Editar
                 </Link>
-
-                <button
-                  className="btn-eliminar"
-                  onClick={() => eliminarCategoria(cat.idCategoria)}
-                >
-                  Eliminar
-                </button>
               </td>
+
             </tr>
           ))}
         </tbody>
-
       </table>
     </section>
   );

@@ -1,71 +1,44 @@
-.categories-section {
-  margin-top: 60px;
+.categorias-section {
+  padding: 40px 0;
   text-align: center;
 }
 
-.categories-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.carousel-btn {
-  background: white;
-  border: 2px solid #ddd;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 20px;
+.categorias-title {
+  font-size: 28px;
   font-weight: bold;
-  color: #444;
+  margin-bottom: 25px;
 }
 
-.carousel-btn:hover {
-  background: #ffe3dc;
-  border-color: #ff6f61;
-}
-
-.carousel-track {
+.categorias-carousel {
   display: flex;
+  justify-content: center;
   gap: 25px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px 5px;
+  flex-wrap: wrap;
 }
 
-.carousel-track::-webkit-scrollbar {
-  display: none;
-}
-
-.category-card {
-  min-width: 250px;
+.categoria-card {
+  width: 160px;
+  padding: 12px;
+  border-radius: 12px;
   background: white;
-  border-radius: 15px;
-  padding: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 
-.category-card:hover {
+.categoria-card:hover {
   transform: translateY(-5px);
 }
 
-.category-card img {
+.categoria-img {
   width: 100%;
-  border-radius: 15px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.category-card p {
+.categoria-nombre {
   margin-top: 10px;
   font-weight: 600;
-  color: #333;
+  font-size: 16px;
 }
