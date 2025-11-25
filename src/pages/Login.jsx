@@ -28,7 +28,7 @@ function Login() {
       // Redirigir al home
       navigate("/");
     } catch (err) {
-      alert("Credenciales incorrectas");
+      alert("Credenciales correctas");
     }
   };
 

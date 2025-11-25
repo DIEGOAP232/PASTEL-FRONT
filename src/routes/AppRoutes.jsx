@@ -5,9 +5,12 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Contacto from "../pages/Contacto";
+import Carrito from "../pages/Carrito";
+import Cart from "../pages/Cart";
 
 // Páginas protegidas
 import Productos from "../pages/Productos";
+import Checkout from "../pages/Checkout";
 
 // Panel Admin
 import Admin from "../pages/Admin";
@@ -29,7 +32,9 @@ function AppRoutes() {
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-
+      <Route path="/carrito" element={<Carrito/>} /> 
+      <Route path="/cart" element={<Cart/>} />
+      <Route path="/checkout" element={<Checkout />} />
       {/* RUTAS PARA USUARIOS LOGUEADOS */}
       <Route
         path="/productos"

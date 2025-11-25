@@ -4,25 +4,23 @@ import "./Carrito.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-
 function Carrito() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
-  const navigate = useNavigate(); // CORREGIDO (antes estaba como Navigate)
-  const { usuario } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const total = cart.reduce(
     (sum, item) => sum + item.precioBase * item.cantidad,
     0
   );
 
-  // FUNCIÓN QUE REDIRIGE SEGÚN LOGIN
   const handleCheckout = () => {
-    if (!usuario) {
-      navigate("/login"); // No logueado -> login
+    if (!user) {
+      navigate("/login");
       return;
     }
 
-    navigate("/checkout"); // Logueado -> checkout
+    navigate("/checkout");
   };
 
   return (
@@ -86,7 +84,6 @@ function Carrito() {
               Vaciar carrito
             </button>
 
-            {/* BOTÓN CORREGIDO */}
             <button className="btn-comprar" onClick={handleCheckout}>
               Proceder al pago
             </button>

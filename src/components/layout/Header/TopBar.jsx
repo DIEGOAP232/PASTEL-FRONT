@@ -31,6 +31,12 @@ function TopBar() {
 
         {/* USUARIO NO AUTENTICADO */}
         {!isAuthenticated && (
+          <Link to="/Register" className="icon-item">
+            👤 <span>Register</span>
+          </Link>
+        )}
+
+        {!isAuthenticated && (
           <Link to="/login" className="icon-item">
             👤 <span>Iniciar Sesión</span>
           </Link>
