@@ -1,0 +1,16 @@
+.favoritos-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.favoritos-container h1 {
+  font-size: 2rem;
+  color: #c0392b;
+  margin-bottom: 20px;
+}
+
+.info {
+  font-size: 1.1rem;
+  margin-top: 20px;
+}

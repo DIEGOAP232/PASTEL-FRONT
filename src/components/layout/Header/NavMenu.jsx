@@ -4,7 +4,7 @@ import { CartContext } from "../../../context/CartContext";
 import { useContext } from "react";
 
 function NavMenu() {
-  const { cart } = useContext(CartContext); // ← CORREGIDO
+  const { cart } = useContext(CartContext);
 
   return (
     <nav className="navmenu">
@@ -18,6 +18,7 @@ function NavMenu() {
         <li><Link to="/contacto">Contacto</Link></li>
         <li><Link to="/nosotros">Nosotros</Link></li>
 
+        {/* CARRO SOLO EN NAVMENU */}
         <li>
           <Link to="/carrito" className="cart-btn">
             🛒 Carrito ({cart.length})

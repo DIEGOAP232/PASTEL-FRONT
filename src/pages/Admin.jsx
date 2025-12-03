@@ -15,6 +15,11 @@ function Admin() {
         <Link className="admin-btn" to="/admin/productos/crear">
           Crear Producto
         </Link>
+
+        <Link className="admin-btn" to="/admin/revision-pagos">
+         Revisar Pagos
+        </Link>
+
       </div>
     </section>
   );

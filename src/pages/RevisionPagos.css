@@ -1,0 +1,46 @@
+.revision-container {
+  padding: 30px;
+}
+
+.pagos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 20px;
+}
+
+.pago-card {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.captura-box img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-approve {
+  background: #4caf50;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-reject {
+  background: #e53935;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

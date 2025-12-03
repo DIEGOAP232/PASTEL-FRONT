@@ -4,94 +4,128 @@ import "./Carrito.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-
 function Carrito() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
-  const navigate = useNavigate(); // CORREGIDO (antes estaba como Navigate)
+  const navigate = useNavigate();
   const { usuario } = useContext(AuthContext);
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.precioBase * item.cantidad,
-    0
-  );
+  // 🔥 Calcular total incluyendo costos extra
+  const total = cart.reduce((sum, item) => {
+    const precioBase = item.precioBase;
+    const costoPersonalizaciones =
+      item.personalizaciones?.reduce(
+        (sub, p) => sub + (p.costoExtra || 0),
+        0
+      ) || 0;
 
-  // FUNCIÓN QUE REDIRIGE SEGÚN LOGIN
+    const totalItem = (precioBase + costoPersonalizaciones) * item.cantidad;
+    return sum + totalItem;
+  }, 0);
+
   const handleCheckout = () => {
     if (!usuario) {
-      navigate("/login"); // No logueado -> login
+      navigate("/login");
       return;
     }
-
-    navigate("/checkout"); // Logueado -> checkout
+    navigate("/checkout");
   };
 
   return (
-    <section className="carrito-container">
-      <h2>Tu carrito</h2>
+    <section className="carrito-page">
+      <h2 className="carrito-title">Tu carrito</h2>
 
       {cart.length === 0 ? (
         <p className="carrito-vacio">Tu carrito está vacío.</p>
       ) : (
-        <>
-          <table className="carrito-tabla">
-            <thead>
-              <tr>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th></th>
-              </tr>
-            </thead>
+        <div className="carrito-layout">
+          
+          {/* ---- LISTA DE PRODUCTOS ---- */}
+          <div className="carrito-items">
+            {cart.map((item, index) => (
+              <div key={`${item.idProducto}-${index}`} className="carrito-card">
 
-            <tbody>
-              {cart.map((item) => (
-                <tr key={item.idProducto}>
-                  <td>{item.nombre}</td>
-                  <td>S/ {item.precioBase}</td>
+                <div className="carrito-info">
+                  <h3>{item.nombre}</h3>
+                  <p className="carrito-precio">
+                    Precio base: S/ {item.precioBase.toFixed(2)}
+                  </p>
 
-                  <td>
+                  {/* ⭐ Mostrar personalizaciones seleccionadas */}
+                  {item.personalizaciones && item.personalizaciones.length > 0 && (
+                    <div className="carrito-personalizaciones">
+                      <h4>Personalización:</h4>
+                      <ul>
+                        {item.personalizaciones.map((p, i) => (
+                          <li key={i}>
+                            {p.tipo}: <strong>{p.opcion}</strong>  
+                            {p.costoExtra > 0 && (
+                              <span className="costo-extra">
+                                (+ S/ {p.costoExtra.toFixed(2)})
+                              </span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Cantidad */}
+                  <div className="carrito-cantidad">
+                    <span>Cantidad:</span>
                     <input
                       type="number"
                       min="1"
                       value={item.cantidad}
                       onChange={(e) =>
                         updateQuantity(
-                          item.idProducto,
-                          parseInt(e.target.value)
+                          item.idUnico, // esto será el ID del item en el carrito
+                          parseInt(e.target.value) || 1
                         )
                       }
                     />
-                  </td>
+                  </div>
 
-                  <td>S/ {(item.precioBase * item.cantidad).toFixed(2)}</td>
+                  {/* Subtotal */}
+                  <p className="carrito-subtotal">
+                    Subtotal:{" "}
+                    <strong>
+                      S/ {(
+                        (item.precioBase +
+                          (item.personalizaciones?.reduce((s, p) => s + (p.costoExtra || 0), 0) || 0)) *
+                        item.cantidad
+                      ).toFixed(2)}
+                    </strong>
+                  </p>
+                </div>
 
-                  <td>
-                    <button
-                      className="btn-remove"
-                      onClick={() => removeFromCart(item.idProducto)}
-                    >
-                      ❌
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                <button
+                  className="btn-remove"
+                  onClick={() => removeFromCart(item.idUnico)}
+                >
+                  ❌ Quitar
+                </button>
 
-          <div className="carrito-footer">
-            <h3>Total a pagar: S/ {total.toFixed(2)}</h3>
+              </div>
+            ))}
+          </div>
+
+          {/* ---- RESUMEN ---- */}
+          <aside className="carrito-resumen">
+            <h3>Resumen del pedido</h3>
+            <p className="resumen-total">
+              Total a pagar: <span>S/ {total.toFixed(2)}</span>
+            </p>
 
             <button className="btn-clear" onClick={clearCart}>
               Vaciar carrito
             </button>
 
-            {/* BOTÓN CORREGIDO */}
             <button className="btn-comprar" onClick={handleCheckout}>
               Proceder al pago
             </button>
-          </div>
-        </>
+          </aside>
+
+        </div>
       )}
     </section>
   );

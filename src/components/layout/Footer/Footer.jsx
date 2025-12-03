@@ -22,7 +22,7 @@ function Footer() {
         {/* LIBRO DE RECLAMACIONES */}
         <div className="footer-section">
           <div className="libro-reclamos-box">
-            <img src="/img/libro-reclamos.png" alt="Libro de reclamaciones" />
+            <img src="/img/libro-reclamos.jpg" alt="Libro de reclamaciones" />
           </div>
 
           <p className="central">Central Telefónica: (01) 416 6400</p>

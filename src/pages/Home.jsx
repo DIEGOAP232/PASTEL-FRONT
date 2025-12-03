@@ -25,7 +25,7 @@ function Home() {
 
         <div className="hero-image-container">
           <img
-            src="/img/pastel-chocolate.png"
+            src="/img/LOGO EMPRESA.jpg"
             alt="Pastel de chocolate"
             className="hero-image"
           />
@@ -37,9 +37,6 @@ function Home() {
 
       {/* RECOMENDADOS */}
       <RecommendedSection />
-
-      {/* BLOG */}
-      <BlogSection />
     </>
   );
 }

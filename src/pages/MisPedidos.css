@@ -1,0 +1,110 @@
+.mis-pedidos-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.mis-pedidos-container h1 {
+  color: #d84343;
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.pedidos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.pedido-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pedido-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.pedido-card h3 {
+  font-size: 1.35rem;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.pedido-card p {
+  margin: 6px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.estado {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+}
+
+.estado.pendiente {
+  background-color: #e47b26;
+}
+
+.estado.en_proceso {
+  background-color: #1e88e5;
+}
+
+.estado.entregado {
+  background-color: #43a047;
+}
+
+.estado.cancelado {
+  background-color: #c62828;
+}
+
+.botones {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancelar {
+  background: #c0392b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-cancelar:hover {
+  background: #a93226;
+}
+
+.btn-detalle {
+  background: #2980b9;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-detalle:hover {
+  background: #2471a3;
+}
+
+.sin-pedidos {
+  margin-top: 40px;
+  font-size: 1.2rem;
+  color: #777;
+}

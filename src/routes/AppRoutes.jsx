@@ -7,9 +7,13 @@ import Register from "../pages/Register";
 import Contacto from "../pages/Contacto";
 import Carrito from "../pages/Carrito";
 import Cart from "../pages/Cart";
+import Nosotros from "../pages/Nosotros";
+import PedidoDetalle from "../pages/PedidoDetalle";
 
-// Páginas protegidas
+// Productos (público)
 import Productos from "../pages/Productos";
+
+// Checkout
 import Checkout from "../pages/Checkout";
 
 // Panel Admin
@@ -18,6 +22,9 @@ import AdminProductos from "../pages/AdminProductos";
 import ProductoForm from "../pages/ProductoForm";
 import AdminCategorias from "../pages/AdminCategorias";
 import CategoriaForm from "../pages/CategoriaForm";
+import RevisionPagos from "../pages/RevisionPagos";
+import MisPedidos from "../pages/MisPedidos";
+import MisFavoritos from "../pages/MisFavoritos";
 
 // Rutas protegidas
 import ProtectedRoute from "./ProtectedRoute";
@@ -32,18 +39,26 @@ function AppRoutes() {
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/carrito" element={<Carrito/>} /> 
-      <Route path="/cart" element={<Cart/>} />
+      <Route path="/carrito" element={<Carrito />} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
-      {/* RUTAS PARA USUARIOS LOGUEADOS */}
-      <Route
-        path="/productos"
-        element={
-          <ProtectedRoute>
-            <Productos />
-          </ProtectedRoute>
-        }
-      />
+    <Route
+  path="/admin/revision-pagos"
+  element={
+    <AdminRoute>
+      <RevisionPagos />
+    </AdminRoute>
+  }
+/>
+
+<Route path="/nosotros" element={<Nosotros />} />
+
+<Route path="/mis-pedidos" element={<MisPedidos />} />
+<Route path="/mis-favoritos" element={<MisFavoritos />} />
+<Route path="/pedido/:idPedido" element={<PedidoDetalle />} />
+
+      {/* PRODUCTOS PÚBLICO */}
+      <Route path="/productos" element={<Productos />} />
 
       {/* RUTAS SOLO ADMIN */}
       <Route

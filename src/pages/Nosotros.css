@@ -1,0 +1,122 @@
+/* GENERAL */
+.nosotros-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+}
+
+/* HERO */
+.nosotros-hero {
+  position: relative;
+  height: 350px;
+  margin-bottom: 60px;
+}
+
+.nosotros-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.35);
+  color: white;
+  border-radius: 12px;
+}
+
+.hero-overlay h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+}
+
+/* SECCIONES */
+.nosotros-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.nosotros-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.nosotros-img img {
+  width: 480px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nosotros-text h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #c0392b;
+}
+
+.nosotros-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* VALORES */
+.nosotros-valores {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.valor-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  border-left: 4px solid #c0392b;
+}
+
+/* COBERTURA */
+.nosotros-cobertura {
+  margin-bottom: 60px;
+  padding: 25px;
+  border-radius: 12px;
+  background: #fff6f5;
+  text-align: center;
+}
+
+.nosotros-cobertura h2 {
+  margin-bottom: 10px;
+  color: #c0392b;
+}
+
+/* SLOGAN */
+.nosotros-slogan {
+  text-align: center;
+  margin: 40px 0 80px;
+}
+
+.nosotros-slogan h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c0392b;
+}
